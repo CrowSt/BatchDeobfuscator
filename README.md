@@ -1,5 +1,5 @@
 ## ABOUT
-I wrote this script just to deobfuscate a single bat file (**fake FoliaDupe**) whose structure looks something like this:
+I wrote this script just to deobfuscate a single bat file (**fake FoliaDupe**) which structure looks something like this:
 ``` batch
 %QFcihijRZS%@%QFcihijRZS%@%QFcihijRZS%s%QFcihijRZS%e%QFcihijRZS%t%QFcihijRZS%% "ykakdHlIvQkCTInBhwCMIRTdKlCZRfMaEyLbwjWxOqAqPAZYooSdOKrfPxYrFLoODIyVwKFxXFyPRbNKKajbMhLrEfMyKdpDBkmHCDbdjUFJMaNliOgbaMBUwERPyGlrOuOfoGHHzErpaCfbQYOvyMZniRKykLgbiMuRMgxaGXcVTKruWoyXppvBRYxVvJVlWOHOIMOjalmXiETXXQYwMHkqQqAljZgxCpzECcjKYNwECVRNFXycjYXOcPxPMbzBFpUqEPUufNVzKgnuYkgLaCLaRiYlfTywOvyLBYInCDxUDYEwZDoZvmXCcrYUoiNKPYiPhbrzbqJXEpWqdbKbcWBZVvgHAlzRolFconNyJpyDcAxmUgpLXkfrXHrmwkzoqpiRjrCpOLRmYxxUyrlRwmuDFMFgvYCXqHKlQdDadAwLRrRZKWnCyfrEwdMWmTvnJrwQkJESoKlwpgkMudVWkzZKNGolQdnKEGCYwBnARUMmuxNNuzbHxWDJRkCdSRBJVaqidLProVEOklQQqarQBfMfCqGKyJfATDQ=%QFcihijRZS%@%QFcihijRZS%e%QFcihijRZS%c%QFcihijRZS%h%QFcihijRZS%o%QFcihijRZS% %QFcihijRZS%o%QFcihijRZS%o%QFcihijRZS%f%QFcihijRZS%f%QFcihijRZS%""
 %ykakdHlIvQkCTInBhwCMIRTdKlCZRfMaEyLbwjWxOqAqPAZYooSdOKrfPxYrFLoODIyVwKFxXFyPRbNKKajbMhLrEfMyKdpDBkmHCDbdjUFJMaNliOgbaMBUwERPyGlrOuOfoGHHzErpaCfbQYOvyMZniRKykLgbiMuRMgxaGXcVTKruWoyXppvBRYxVvJVlWOHOIMOjalmXiETXXQYwMHkqQqAljZgxCpzECcjKYNwECVRNFXycjYXOcPxPMbzBFpUqEPUufNVzKgnuYkgLaCLaRiYlfTywOvyLBYInCDxUDYEwZDoZvmXCcrYUoiNKPYiPhbrzbqJXEpWqdbKbcWBZVvgHAlzRolFconNyJpyDcAxmUgpLXkfrXHrmwkzoqpiRjrCpOLRmYxxUyrlRwmuDFMFgvYCXqHKlQdDadAwLRrRZKWnCyfrEwdMWmTvnJrwQkJESoKlwpgkMudVWkzZKNGolQdnKEGCYwBnARUMmuxNNuzbHxWDJRkCdSRBJVaqidLProVEOklQQqarQBfMfCqGKyJfATDQ%
@@ -58,5 +58,5 @@ cd "%~dp0"
 exit /b
 SEROXEN...
 ```
-You need to deobfuscate that batch file yourself, as the last line is encrypted code for PowerShell, which is decoded and executed on line 7. It is very large to publish here. 
+You need to deobfuscate that batch file yourself, as the last line is encrypted code for PowerShell, which is decoded and executed on line 7. It is very large (10MB) to publish here. 
 I don't know what this code does, so if you were able to decrypt it - message me on Discord or Telegram (@CrowTheBest)
