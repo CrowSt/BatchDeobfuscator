@@ -1,8 +1,13 @@
+# You can add your variables. They look like null strings so the script will pass them
+# if they don't state here
+sys_variables = ['%TEMP%']
+
+
 class Deobfuscator:
     def __init__(self, filename: str, with_save: bool = True, save_sets: bool = False):
         self.file = open(filename)
         self.deob_file = open(filename + '.deob', 'w')
-        self.obf_strings = {}
+        self.obf_strings = {var: var for var in sys_variables}
         self.with_save = with_save
         self.save_sets = save_sets
 
@@ -28,25 +33,35 @@ class Deobfuscator:
         deobfuscated_string = ''
         key_name = False
         key_name_string = ''
-
         for symbol in line:
             if symbol == '%':
                 key_name = not key_name
                 if key_name:
                     key_name_string = ''
                 else:
-                    # in this context it IS "set=something" and I don't know if it is possible to use otherwise
-                    if ':' in key_name_string and key_name_string.endswith('='):
-                        key, pattern = key_name_string.split(':')
+                    # string manipulations
+                    if ':' in key_name_string:
+                        key, condition = key_name_string.split(':')
                         key = self.obf_strings.get(key, None)
                         if key is None:  # just if it is a null string or a bug
                             return ''
-                        key = key.replace(pattern[:-1], '')  # set
 
-                        deobfuscated_string += key
-                        if key != 'set ':  # JUST IF POSSIBLE
-                            input(('what??', key, pattern))
-                        continue
+                        # pattern replacement
+                        if  '=' in condition:
+                            pattern, replacement = condition.split('=')
+                            key = key.replace(pattern, '')
+                            deobfuscated_string += key
+                            continue
+
+                        # pulling out symbols
+                        elif '~' in condition:
+                            offset, steps = map(int, condition[1:].split(','))
+                            deobfuscated_string += key[offset:offset+steps]
+                            continue
+
+                        else:
+                            # null string
+                            continue
 
                     if key_name_string == 'systemdrive':
                         deobfuscated_string += '%systemdrive%'
@@ -74,7 +89,6 @@ class Deobfuscator:
             temp_line = line.split(' ', 1)[1]
             if '"' in line:
                 temp_line = temp_line[1:-2]
-
             key, value = temp_line.split('=', 1)
 
             self.obf_strings[key] = value
@@ -82,4 +96,4 @@ class Deobfuscator:
         return line
 
 
-Deobfuscator("FoliaDupe.bat").parse_file()
+Deobfuscator("test.txt").parse_file()
