@@ -6,7 +6,7 @@ I wrote this script just to deobfuscate a single bat file (**fake FoliaDupe**) w
 ```
 
 
-This obfuscation uses "null string" (that's what I call undeclared variables), variable addition manipulations like this:
+This obfuscation uses "null string" (that's how I call undeclared variables), variable addition manipulations like this:
 
 ``` batch
 set "GhrBLmrQ=="  `
@@ -17,17 +17,24 @@ set "aaAAssa%GhrBLmrQ%off"
 %aXlbMN%%%BxRRRldk%%aaAAssa%% 
 ```
 
-... 
-and string trimming:
+... and string trimming (also string replacement):
 ```batch
 set "obf_set=sabcdefghijklmnopet "
 %obf_set:abcdefghijklmnop=%"abc=%null_string%temp_var"
 :: abcdef... removed from the obf_set value to get "set="
 ```
+
+... or extracting characters from strings:
+```batch
+set "obf_set=abcdefghijklmnopqrstuvwxyz"
+%obf_set:~18,1%%obf_set:~4,1%%obf_set:~19,1%=value
+:: we took 18 symbol, 4 symbol and 19 from obf_set to get "set"
+```
+Also, the script can work with local enviroment: `setlocal`
 <br>
 
 #### <u> !!! WARNING !!!</u>
-**I am not very good at syntax of complex batch files and deobfuscated only a specific and single file! I don't guarantee that this script will work with absolutely all files obfuscated in a similar way, but you can try.** 
+**I am not very good at syntax of complex batch files and deobfuscated several files only! I don't guarantee that this script will work with absolutely all files obfuscated in a similar way, but you can try or ask me to implement more batch syntax.** 
 
 ## USAGE
 
@@ -39,6 +46,16 @@ _Deobfuscator(self, filename: str, with_save: bool = True, save_sets: bool = Fal
 `with_save` - whether the script should write the result to a file. 
 Result will be at the same folder named "patch_to_file.bat.deob"  
 `save_sets` - whether the script should write `set "key=val"` to the deobfuscated file
+
+## TODO
+I don't want to work on this repo unnecessarily, so you can open an issue or write me via Telegram or Discord (@CrowTheBest) to ask a feature.
+
+Here are that script can't work with now:<br>
+- one-line expressions with "&"
+- `setlocal Enable/DisableExtensions` because I don't know what it does
+- some expressions with "~" (working on it)
+- every single (or yours) system variables. Is it necessary? Couse I don't think so. You should add them yourself in the list
+- something else? 
 
 ## FoliaDupe.bat
 It's a FAKE DUPE. Malware? Maybe.  
