@@ -1,5 +1,4 @@
-# You can add your variables. They look like null strings so the script will pass them
-# if they don't state here
+# You can add your variables. They look like null strings so the script will pass them if they don't state here
 sys_variables = ['%TEMP%']
 
 
@@ -59,7 +58,7 @@ class Deobfuscator:
                             return ''
 
                         # pattern replacement
-                        if  '=' in condition:
+                        if '=' in condition:
                             pattern, replacement = condition.split('=')
                             key = key.replace(pattern, '')
                             deobfuscated_string += key
@@ -68,7 +67,7 @@ class Deobfuscator:
                         # pulling out symbols
                         elif '~' in condition:
                             offset, steps = map(int, condition[1:].split(','))
-                            deobfuscated_string += key[offset:offset+steps]
+                            deobfuscated_string += key[offset:offset + steps]
                             continue
 
                         else:
